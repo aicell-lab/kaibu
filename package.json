@@ -2,24 +2,25 @@
     "name": "Kaibu",
     "version": "2.0.0",
     "private": true,
+    "type": "module",
     "homepage": "https://github.com/aicell-lab/kaibu",
     "bugs": {
-      "url": "https://github.com/aicell-lab/kaibu/issues"
+        "url": "https://github.com/aicell-lab/kaibu/issues"
     },
     "repository": {
-      "type": "git",
-      "url": "https://github.com/aicell-lab/kaibu"
+        "type": "git",
+        "url": "https://github.com/aicell-lab/kaibu"
     },
     "license": "MIT",
     "author": "AICell Lab",
-    "workspaces": {
-      "packages": [
-      ]
-    },
     "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
     },
-    
     "devDependencies": {
-      
+        "ts-node": "^10.9.1",
+        "typescript": "^5.3.3",
+        "vite": "^5.0.6"
     }
-  }
+}
