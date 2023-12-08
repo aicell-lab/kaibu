@@ -1,11 +1,46 @@
+import React from 'react';
+import { Mosaic, MosaicWindow } from 'react-mosaic-component';
+
 import kaibuLogo from "/static/img/kaibu-icon.svg"
+import 'react-mosaic-component/react-mosaic-component.css';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import '@blueprintjs/icons/lib/css/blueprint-icons.css';
+
+import './app.css';
+
+const getTitle = (id: string) => {
+  return id
+}
 
 export default function App() {
+  let [windowNumber, setWindowNumber] = React.useState(3)
+
+  const createNode = () => {
+    setWindowNumber(windowNumber + 1)
+    return windowNumber.toString()
+  }
+
   return (
-    <>
-      <div>
-        <img src={kaibuLogo} alt="Kaibu Logo" />
-      </div>
-    </>
+    <div id="app">
+      <Mosaic<string>
+        renderTile={(id, path) => (
+          <MosaicWindow<string> path={path} createNode={createNode} title={getTitle(id)}>
+            <img height={100} src={kaibuLogo} alt="Kaibu Logo" />
+            <h1>{getTitle(id)}</h1>
+          </MosaicWindow>
+        )}
+
+        initialValue={{
+          direction: 'row',
+          first: 'a',
+          second: {
+            direction: 'column',
+            first: 'b',
+            second: 'c',
+          },
+          splitPercentage: 40,
+        }}
+      />
+    </div>
   )
 }
