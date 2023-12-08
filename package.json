@@ -22,6 +22,7 @@
   "dependencies": {
     "@blueprintjs/core": "^5.7.2",
     "@blueprintjs/icons": "^5.5.0",
+    "imjoy-core": "^0.14.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-mosaic-component": "^6.1.0"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Mosaic, MosaicWindow } from 'react-mosaic-component';
 
 import kaibuLogo from "/static/img/kaibu-icon.svg"
@@ -12,8 +12,31 @@ const getTitle = (id: string) => {
   return id
 }
 
+import * as imjoyCore from "imjoy-core"
+
 export default function App() {
   let [windowNumber, setWindowNumber] = React.useState(3)
+  let [imjoy, setImJoy] = React.useState(null)
+
+  useEffect(()=>{
+    const imjoy = new imjoyCore.ImJoy({
+      imjoy_api: {},
+      //imjoy config
+    });
+
+    imjoy.start({workspace: 'default'}).then(async ()=>{
+      setImJoy(imjoy)
+      imjoy.event_bus.on("add_window", win => {
+        debugger
+        // Create mosaic window
+        // mosaicContainer.id = win.window_id; // <--- this is important
+      })
+      await imjoy.api.createWindow({src: "https://kaibu.org"})
+    })
+
+    
+  }, [])
+
 
   const createNode = () => {
     setWindowNumber(windowNumber + 1)
